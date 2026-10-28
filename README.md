@@ -32,3 +32,9 @@ A imagem `public/training.jpg` é ilustrativa e não representa o profissional o
 Sem contato configurado, os botões apresentam um aviso acessível e não abrem checkout fictício. Com valores confirmados, WhatsApp inclui mensagem preenchida e checkout/Instagram abrem o destino configurado. Não há formulário que armazene dados pessoais.
 
 Introdução de 2,1 segundos com botão de pular, exibida uma vez por sessão e desativada para redução de movimento. FAQ acessível, menu móvel com Escape, navegação por seções e destaque da seção ativa.
+
+## Deploy na Vercel e diagnóstico de 404
+
+`vercel.json` declara explicitamente o framework Next.js, a instalação com lockfile e a saída `.next`. Nas configurações do projeto Vercel, mantenha **Root Directory** na raiz do repositório (vazio ou `.`), pois `package.json` e `src/app` ficam na raiz. A branch de produção deve ser `main`.
+
+Se um deploy estiver `Ready` mas retornar `404 NOT_FOUND` da plataforma, confira o commit implantado e os Build Logs. O log deve executar `next build` e listar a rota `/`. Um projeto criado antes de existir o código pode ter sido configurado com preset `Other`. Use o preset Next.js e remova overrides antigos incompatíveis. Não configure saída `public`, `dist` ou `out`. Faça um novo deploy após corrigir as configurações.
